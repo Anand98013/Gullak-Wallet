@@ -1,0 +1,7 @@
+dn: ou=People,dc=gullak,dc=bank
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Groups,dc=gullak,dc=bank
+objectClass: organizationalUnit
+ou: Groups
