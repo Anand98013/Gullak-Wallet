@@ -28,3 +28,29 @@ Understand the Gullak Wallet assignment and prepare the development environment 
 - Configure and implement user registration through wallet-api.
 - Integrate wallet-api with LDAP for dynamic user creation.
 - Implement authentication and role-based authorization.
+
+
+## Day 2 – LDAP Registration Implementation & Verification (24 Nov 2026)
+
+### Work Completed
+- Created LDAP organizational units: `ou=People` and `ou=Groups`.
+- Created LDAP groups: `customer` and `admin`.
+- Tested the user registration API.
+- Verified that the registered user `anand01` exists in LDAP under `ou=People`.
+- Verified the user's name, username and email attributes.
+- Confirmed that `anand01` is a member of the `customer` group using `ldapsearch`.
+
+### Issues Faced
+- LDAP registration initially failed because `ou=People` and `ou=Groups` were missing.
+- LDAP import initially failed due to credential issues during binding.
+- Corrected the LDAP import command and successfully created the required LDAP entries.
+
+### Verification
+- LDAP user search returned `result: 0 Success`.
+- LDAP customer group search returned `result: 0 Success`.
+- User entry and customer group membership were both confirmed.
+
+### Next Step
+- Plan login scenarios and request/response structure.
+- Implement LDAP-based login authentication and validation.
+

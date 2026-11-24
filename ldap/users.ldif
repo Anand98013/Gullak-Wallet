@@ -5,3 +5,13 @@ ou: People
 dn: ou=Groups,dc=gullak,dc=bank
 objectClass: organizationalUnit
 ou: Groups
+
+dn: cn=customer,ou=Groups,dc=gullak,dc=bank
+objectClass: groupOfNames
+cn: customer
+member: cn=admin,dc=gullak,dc=bank
+
+dn: cn=admin,ou=Groups,dc=gullak,dc=bank
+objectClass: groupOfNames
+cn: admin
+member: cn=admin,dc=gullak,dc=bank

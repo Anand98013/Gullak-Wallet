@@ -1,16 +1,22 @@
 package com.gullak.wallet.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 public class RegisterRequest {
 
-    @NotNull
+    @NotNull @Size(min = 3, max = 30)
+    @Pattern(regexp = "^[a-zA-Z0-9_.]+$")
     private String username;
-    @NotNull
+
+    @NotNull @Size(min = 2, max = 50)
     private String fullName;
-    @NotNull
+
+    @NotNull @Size(min = 6, max = 72)
     private String password;
-    @NotNull @Email
+
+    @NotNull @Email @Size(max = 250)
     private String email;
 
     public String getUsername(){
