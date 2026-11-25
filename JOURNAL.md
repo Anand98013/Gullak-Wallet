@@ -54,3 +54,22 @@ Understand the Gullak Wallet assignment and prepare the development environment 
 - Plan login scenarios and request/response structure.
 - Implement LDAP-based login authentication and validation.
 
+
+# Day 3 – Daily Work Journal
+
+### Work Completed
+1. Implemented the login functionality using LDAP authentication.
+2. Integrated manually generated JWT tokens using HMAC-SHA256 (HS256).
+3. Added JWT claims such as issuer (`iss`), subject (`sub`), issued-at (`iat`), and expiration (`exp`).
+4. Configured the JWT secret using an environment variable.
+5. Implemented a custom JWT token validator for signature and claim verification.
+6. Created a protected `/secure/test` endpoint to test JWT authentication.
+7. Tested the login and protected endpoint using Postman.
+
+### Issue Faced
+While testing the protected endpoint through Postman, the `/secure/test` endpoint continued returning `401 Unauthorized` even when a JWT token was provided. Requests without a token were also rejected. Although the custom JWT filter was triggered, authentication with a valid token could not be verified.
+
+### Pending Work
+- Troubleshoot and resolve the JWT validation and authentication issue.
+- Verify successful access to protected endpoints using a valid token.
+- Test missing, invalid, expired, and valid JWT tokens.

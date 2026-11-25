@@ -1,9 +1,10 @@
-
 package com.gullak.wallet.service;
 
 import com.gullak.wallet.dto.RegisterRequest;
 import com.gullak.wallet.dto.RegisterResponse;
 import com.gullak.wallet.security.PasswordEncoder;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import org.jboss.logging.Logger;
@@ -80,8 +81,10 @@ public class AuthService {
 
             if (results.hasMore()) {
                 throw new WebApplicationException(
-                        "Username already exists",
-                        Response.Status.CONFLICT
+                        Response.status(Response.Status.CONFLICT)
+                                .entity("{\"message\":\"Username already exists\"}")
+                                .type(MediaType.APPLICATION_JSON)
+                                .build()
                 );
             }
 
