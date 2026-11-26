@@ -3,6 +3,8 @@ target/
 
 # Environment variables & secrets
 .env
+**/.env
+**/privateKey.pem
 
 # IDE files
 .idea/

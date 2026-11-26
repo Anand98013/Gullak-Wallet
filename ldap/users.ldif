@@ -6,12 +6,22 @@ dn: ou=Groups,dc=gullak,dc=bank
 objectClass: organizationalUnit
 ou: Groups
 
-dn: cn=customer,ou=Groups,dc=gullak,dc=bank
-objectClass: groupOfNames
-cn: customer
-member: cn=admin,dc=gullak,dc=bank
+dn: uid=gullak-admin,ou=People,dc=gullak,dc=bank
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: gullak-admin
+cn: Gullak Administrator
+sn: Administrator
+mail: gullak-admin@gullak.bank
+userPassword: {SSHA}1V6S7HwmaHMX0Wm2SYy37Vt4sM7u4NIy
 
 dn: cn=admin,ou=Groups,dc=gullak,dc=bank
 objectClass: groupOfNames
 cn: admin
-member: cn=admin,dc=gullak,dc=bank
+member: uid=gullak-admin,ou=People,dc=gullak,dc=bank
+
+dn: cn=customer,ou=Groups,dc=gullak,dc=bank
+objectClass: groupOfNames
+cn: customer

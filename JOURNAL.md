@@ -1,5 +1,39 @@
 # Gullak Wallet – Development Journal
 
+## Gullak Wallet – Project Checklist
+
+### Week 1 – Core Wallet
+- LDAP Registration
+- LDAP Login
+- JWT Generation & Verification
+- Account Creation API
+- Account Details API
+- Transfer API
+- Account Statement API
+- PostgreSQL Transaction
+- Ownership Verification
+- LDAP Roles (Customer/Admin)
+- 401 & 403 Handling
+
+### Week 2 – Notifications & Testing
+- Kafka Integration
+- Notification Service
+- Sender & Receiver Notifications
+- Notification API
+- Notification Recovery
+- Rush Test (50 Concurrent Transfers)
+- JUnit Tests
+- Robot Framework (8+ API Tests)
+
+### Final Submission
+- README.md
+- JOURNAL.md
+- docker-compose.yml
+- ldap/users.ldif
+- db/schema.sql
+- scripts/rush.sh
+- Git commits
+
 ## Day 1 – Assignment Review and Project Setup
 
 ### Objective
@@ -55,7 +89,7 @@ Understand the Gullak Wallet assignment and prepare the development environment 
 - Implement LDAP-based login authentication and validation.
 
 
-# Day 3 – Daily Work Journal
+## Day 3 – Daily Work Journal
 
 ### Work Completed
 1. Implemented the login functionality using LDAP authentication.
@@ -73,3 +107,26 @@ While testing the protected endpoint through Postman, the `/secure/test` endpoin
 - Troubleshoot and resolve the JWT validation and authentication issue.
 - Verify successful access to protected endpoints using a valid token.
 - Test missing, invalid, expired, and valid JWT tokens.
+
+
+## Day 4 Daily Work Journal
+
+### Work Done
+- Worked on login and registration functionality and defined account ownership based on the authenticated user's identity.
+- Configured LDAP users and roles, including the Admin user, and verified role-based authentication.
+- Implemented the Account module, including account creation and fetching account details by account ID.
+- Verified account access for the account owner, Admin, and other users to ensure proper authorization.
+- Configured PostgreSQL connection with the application and verified account persistence in the correct database.
+- Started the Transfer module by preparing the request DTO, entity, and repository according to the required database schema.
+- Reviewed the transfer workflow, validations, transaction handling, duplicate request prevention, and failed transfer record maintenance.
+
+### Challenges Faced
+- Identified that account data was being persisted somewhere, but not in the intended PostgreSQL database due to missing datasource configuration.
+- Understood how PanacheRepository provides built-in database methods without requiring custom repository implementations.
+- Clarified how to handle duplicate transfer requests and maintain transaction consistency without relying on users to manually provide a request ID.
+
+### Pending
+- Implement `TransferService` and `TransferResource`.
+- Handle successful and failed transfers with proper transaction and audit management.
+- Test transfer scenarios using Postman.
+

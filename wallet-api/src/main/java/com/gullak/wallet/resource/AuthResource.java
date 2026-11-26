@@ -1,20 +1,14 @@
 package com.gullak.wallet.resource;
 
-import com.gullak.wallet.dto.LoginRequest;
-import com.gullak.wallet.dto.LoginResponse;
-import com.gullak.wallet.dto.RegisterRequest;
-import com.gullak.wallet.dto.RegisterResponse;
-import com.gullak.wallet.service.AuthService;
+import com.gullak.wallet.dto.*;
+import com.gullak.wallet.service.RegisterService;
 import com.gullak.wallet.security.JwtService;
 import com.gullak.wallet.service.LoginService;
+
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.*;
 
 @Path("/auth")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -22,7 +16,7 @@ import jakarta.ws.rs.core.Response;
 public class AuthResource {
 
     @Inject
-    AuthService authService;
+    RegisterService registerService;
 
     @Inject
     LoginService loginService;
@@ -33,34 +27,37 @@ public class AuthResource {
     @POST
     @Path("/register")
     public RegisterResponse register(@Valid RegisterRequest request) {
-        return authService.register(request);
+        return registerService.register(request);
     }
-
 
     @POST
     @Path("/login")
-    public Response login(@Valid LoginRequest request){
-        boolean authenticated = loginService.authenticate(
+    public Response login(@Valid LoginRequest request) {
+
+        AuthenticatedUser user = loginService.authenticate(
                 request.getUsername(),
                 request.getPassword()
         );
 
-        if(!authenticated){
+        if (user == null) {
             return Response.status(Response.Status.UNAUTHORIZED)
                     .entity("Invalid Username and Password")
                     .build();
         }
 
-        String token = jwtService.generateToken(request.getUsername());
+        String token = jwtService.generateToken(
+                user.getUserId(),
+                user.getUsername(),
+                user.getRole()
+        );
 
         LoginResponse response = new LoginResponse();
         response.setMessage("Login successful");
-        response.setUsername(request.getUsername());
+        response.setUsername(user.getUsername());
         response.setToken(token);
         response.setTokenType("Bearer");
         response.setExpiresIn(3600);
 
         return Response.ok(response).build();
     }
-
 }

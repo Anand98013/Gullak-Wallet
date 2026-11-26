@@ -10,8 +10,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import org.jboss.logging.Logger;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.WebApplicationException;
-import jakarta.ws.rs.core.Response;
-
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.naming.Context;
@@ -23,12 +21,12 @@ import javax.naming.ldap.InitialLdapContext;
 import java.util.Hashtable;
 
 @ApplicationScoped
-public class AuthService {
+public class RegisterService {
 
     @Inject
     PasswordEncoder passwordEncoder;
 
-    private static final Logger LOG = Logger.getLogger(AuthService.class);
+    private static final Logger LOG = Logger.getLogger(RegisterService.class);
 
     @ConfigProperty(name = "ldap.url")
     String ldapUrl;

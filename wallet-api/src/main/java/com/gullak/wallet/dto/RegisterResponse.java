@@ -1,22 +1,12 @@
 package com.gullak.wallet.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class RegisterResponse {
+
     private String message;
     private String username;
-
-    public String getMessage(){
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getUsername(){
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }
