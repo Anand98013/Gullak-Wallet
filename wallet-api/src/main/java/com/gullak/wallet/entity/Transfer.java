@@ -1,9 +1,6 @@
 package com.gullak.wallet.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,20 +9,22 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@Entity
+@Table(name = "transfer")
 public class Transfer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "requestId", nullable = false, unique = true)
+    @Column(name = "request_id", nullable = false, unique = true)
     private UUID requestId;
 
-    @Column(name = "fromAccountId", nullable = false)
-    private String fromAccountId;
+    @Column(name = "from_account_id", nullable = false)
+    private Long fromAccountId;
 
-    @Column(name = "toAccountId", nullable = false)
-    private String toAccountId;
+    @Column(name = "to_account_id", nullable = false)
+    private Long toAccountId;
 
     @Column(name = "amount_paise", nullable = false)
     private Long amountPaise;
@@ -36,7 +35,7 @@ public class Transfer {
     @Column(name = "failure_reason")
     private String failureReason;
 
-    @Column(name = "reverse_by")
+    @Column(name = "reversed_by")
     private Long reversedBy;
 
     @Column(name = "reversal_of")

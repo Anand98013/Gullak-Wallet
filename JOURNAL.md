@@ -130,3 +130,17 @@ While testing the protected endpoint through Postman, the `/secure/test` endpoin
 - Handle successful and failed transfers with proper transaction and audit management.
 - Test transfer scenarios using Postman.
 
+
+## Day 5 Daily work
+
+### Work Done
+
+- Implemented transfer logic in `TransferService`, including sender debit and receiver credit.
+- Added validation for account existence, ownership, same-account transfers, and insufficient balance.
+- Implemented account locking using `findByIdForUpdate()` to prevent concurrent transfer issues.
+- Created and saved successful transfer records with request ID, amount, status, and timestamps.
+- Reviewed `@Transactional`, transaction commit, and rollback behavior, including how failed transactions revert database changes.
+- Discussed how failed transfer attempts can be recorded separately for audit/history without being lost during rollback.
+
+**Next Step:**
+- Test transfer success and failure scenarios, verify database balance changes and transaction rollback, and implement failed transfer audit logging.
